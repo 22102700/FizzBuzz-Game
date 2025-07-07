@@ -14,8 +14,3 @@ A 3-tier, containerized online FizzBuzz-like game platform.
 2. Run `docker-compose up --build`
 3. Access the frontend at [http://localhost:3000](http://localhost:3000)
 4. Backend API at [http://localhost:5000](http://localhost:5000)
-
-## Project Structure
-- `/frontend` - React SPA
-- `/backend` - .NET 8 Web API
-- `/db` - Database scripts/migrations 
