@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: fizzbuzz
+      POSTGRES_PASSWORD: fizzbuzzpw
+      POSTGRES_DB: fizzbuzzdb
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend/FizzBuzzGame
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=fizzbuzzdb;Username=fizzbuzz;Password=fizzbuzzpw
+    ports:
+      - '5000:8080'
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:80'
+    depends_on:
+      - backend
+
+volumes:
+  db_data: 
